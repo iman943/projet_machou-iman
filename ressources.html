@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ressources - InfoHub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="logo"><h1 class="lang-txt" data-key="logo">InfoHub</h1></div>
+            <ul>
+                <li><a href="index.html" class="lang-txt" data-key="nav_dash">Tableau de bord</a></li>
+                <li class="active"><a href="ressources.html" class="lang-txt" data-key="nav_res">Ressources</a></li>
+                <li><a href="membres.html" class="lang-txt" data-key="nav_mem">Membres</a></li>
+                <li class="logout-item"><a href="#" onclick="deconnexion()" class="lang-txt" data-key="nav_out">Déconnexion</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="lang-selector">
+                    <select id="selectLangue" onchange="changerLangue(this.value)">
+                        <option value="fr">Français 🇫🇷</option>
+                        <option value="en">English 🇬🇧</option>
+                        <option value="ar">العربية 🇲🇦</option>
+                    </select>
+                </div>
+            </header>
+
+            <section class="management-section">
+                <h3 class="lang-txt" data-key="title_manage">Gestion des Ressources</h3>
+                
+                <div class="search-box">
+                    <input type="text" id="searchBar" onkeyup="rechercherRessource()" class="lang-input" placeholder="Rechercher...">
+                </div>
+
+                <div class="add-form">
+                    <div class="form-inputs">
+                        <input type="text" id="nouveauTitre" placeholder="Titre">
+                        <input type="text" id="nouvelAuteur" placeholder="Auteur">
+                        <input type="text" id="nouvelleCategorie" placeholder="Catégorie">
+                        <button onclick="ajouterRessource()" class="btn-save lang-txt" data-key="btn_save">Enregistrer</button>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="lang-txt" data-key="th_title">Titre</th>
+                                <th class="lang-txt" data-key="th_author">Auteur</th>
+                                <th class="lang-txt" data-key="th_cat">Catégorie</th>
+                                <th class="lang-txt" data-key="th_actions">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="corpsTableau"></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/lang.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

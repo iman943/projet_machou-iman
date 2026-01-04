@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - InfoHub</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%); 
+            font-family: 'Inter', sans-serif; 
+            margin: 0; 
+        }
+        .login-card { 
+            background: white; 
+            padding: 40px; 
+            border-radius: 24px; 
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); 
+            width: 90%; 
+            max-width: 400px; 
+            text-align: center; 
+        }
+        .input-group { margin-bottom: 20px; text-align: left; }
+        .input-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #334155; }
+        .input-group input { 
+            width: 100%; 
+            padding: 14px; 
+            border: 2px solid #f1f5f9; 
+            border-radius: 12px; 
+            box-sizing: border-box; 
+            font-size: 16px;
+        }
+        .login-btn { 
+            width: 100%; 
+            padding: 14px; 
+            background: #6366f1; 
+            color: white; 
+            border: none; 
+            border-radius: 12px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        .login-btn:hover { background: #4f46e5; }
+        .error-msg { 
+            color: #e11d48; 
+            background-color: #fff1f2; 
+            padding: 10px; 
+            border-radius: 8px; 
+            display: none; 
+            margin-bottom: 20px; 
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <h2>InfoHub</h2>
+        <p style="color: #64748b; font-size: 14px; margin-bottom: 20px;">
+            Identifiants : admin@app.com / admin123
+        </p>
+        
+        <div id="messageErreur" class="error-msg">Identifiants incorrects. Veuillez réessayer.</div>
+
+        <div class="input-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="admin@app.com">
+        </div>
+
+        <div class="input-group">
+            <label for="password">Mot de passe</label>
+            <input type="password" id="password" placeholder="••••••••">
+        </div>
+
+        <button type="button" onclick="validerConnexion()" class="login-btn">Se connecter</button>
+    </div>
+
+    <script>
+        function validerConnexion() {
+            console.log("Tentative de connexion...");
+            
+            const emailSaisi = document.getElementById('email').value.trim();
+            const passSaisi = document.getElementById('password').value.trim();
+            const erreurDiv = document.getElementById('messageErreur');
+
+            if (emailSaisi === "admin@app.com" && passSaisi === "admin123") {
+                console.log("Succès !");
+                localStorage.setItem('estConnecte', 'true');
+                 window.location.replace("index.html");
+            } else {
+                console.log("Échec : " + emailSaisi + " / " + passSaisi);
+                erreurDiv.style.display = "block";
+            
+                document.getElementById('password').value = "";
+            }
+        }
+        document.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                validerConnexion();
+            }
+        });
+    </script>
+
+</body>
+</html>
